@@ -1,0 +1,180 @@
+{
+  "revision_id": "428070b860b12a09be9c92fecd34114f30d9d5693a076956e70a270b10593429",
+  "name": "mongodb",
+  "run_list": [
+    "recipe[mongodb::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "apt": {
+      "version": "7.2.0",
+      "identifier": "42f46ee8ced265bcc92c3bf40c9f7ceb3c443df1",
+      "dotted_decimal_identifier": "18846105652351589.53138487443197087.137349770264049",
+      "cache_key": "apt-7.2.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/apt/versions/7.2.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/apt/versions/7.2.0/download",
+        "version": "7.2.0"
+      }
+    },
+    "mongodb": {
+      "version": "3.0.15",
+      "identifier": "2283a63742ae19d0d62da2c0a59848d5fc41afa7",
+      "dotted_decimal_identifier": "9714899123088921.58782286648223128.80083897397159",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "d72f9e2726ad45a82d1b3851ff64cf18c2992839",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    },
+    "mongodb3": {
+      "version": "3.0.0",
+      "identifier": "ea88fb2e5b0297093dd5f9ae882da94af6c7916c",
+      "dotted_decimal_identifier": "66015756946178711.2601264016689197.186139432948076",
+      "cache_key": "mongodb3-3.0.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/mongodb3/versions/3.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/mongodb3/versions/3.0.0/download",
+        "version": "3.0.0"
+      }
+    },
+    "packagecloud": {
+      "version": "1.0.1",
+      "identifier": "8b5250a00d7eb77029eda677b683beb7ec978eac",
+      "dotted_decimal_identifier": "39215527998881463.31571298068444803.209697157648044",
+      "cache_key": "packagecloud-1.0.1-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/packagecloud/versions/1.0.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/packagecloud/versions/1.0.1/download",
+        "version": "1.0.1"
+      }
+    },
+    "runit": {
+      "version": "1.7.8",
+      "identifier": "442e13619b72ba6b3ce3fcb00055e75e564e610a",
+      "dotted_decimal_identifier": "19190959193158330.30184772402675797.254392360919306",
+      "cache_key": "runit-1.7.8-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/runit/versions/1.7.8/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/runit/versions/1.7.8/download",
+        "version": "1.7.8"
+      }
+    },
+    "user": {
+      "version": "0.7.0",
+      "identifier": "20811bf2f6e62596d99c589bee75acca7475c0da",
+      "dotted_decimal_identifier": "9149156295108133.42460512031338101.189985537245402",
+      "cache_key": "user-0.7.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/user/versions/0.7.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/user/versions/0.7.0/download",
+        "version": "0.7.0"
+      }
+    },
+    "yum": {
+      "version": "5.1.0",
+      "identifier": "705aaff4ddd04afff64efc8c738cfea4fd628e82",
+      "dotted_decimal_identifier": "31624909165547594.72046938166162316.279984579186306",
+      "cache_key": "yum-5.1.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/yum/versions/5.1.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/yum/versions/5.1.0/download",
+        "version": "5.1.0"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "apt",
+        "= 7.2.0"
+      ],
+      [
+        "mongodb",
+        ">= 0.0.0"
+      ],
+      [
+        "mongodb3",
+        "= 3.0.0"
+      ],
+      [
+        "packagecloud",
+        "= 1.0.1"
+      ],
+      [
+        "runit",
+        "= 1.7.8"
+      ],
+      [
+        "user",
+        "= 0.7.0"
+      ],
+      [
+        "yum",
+        "= 5.1.0"
+      ]
+    ],
+    "dependencies": {
+      "apt (7.2.0)": [
+
+      ],
+      "mongodb (0.1.0)": [
+        [
+          "mongodb3",
+          "= 3.0.0"
+        ]
+      ],
+      "mongodb3 (3.0.0)": [
+        [
+          "apt",
+          ">= 0.0.0"
+        ],
+        [
+          "yum",
+          ">= 0.0.0"
+        ],
+        [
+          "user",
+          ">= 0.0.0"
+        ],
+        [
+          "runit",
+          "~> 1.7.0"
+        ]
+      ],
+      "packagecloud (1.0.1)": [
+
+      ],
+      "runit (1.7.8)": [
+        [
+          "packagecloud",
+          ">= 0.0.0"
+        ]
+      ],
+      "user (0.7.0)": [
+
+      ],
+      "yum (5.1.0)": [
+
+      ]
+    }
+  }
+}

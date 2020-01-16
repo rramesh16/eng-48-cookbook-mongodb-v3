@@ -11,9 +11,6 @@ unless os.windows?
 end
 
 # This is an example test, replace it with your own test.
-describe port(27017) do
-  it { should be_listening }
-end
 
 describe package('mongodb-org') do
   it { should be_installed }
@@ -23,4 +20,15 @@ end
 describe service('mongod') do
   it { should be_running }
   it { should be_enabled }
+end
+
+# Test mongodb config file is created with right permission.
+describe file('/etc/mongod.conf') do
+  it { should be_file }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
+
+describe port('0.0.0.0', 27017) do
+  it { should be_listening }
 end

@@ -4,31 +4,34 @@
 #
 # Copyright:: 2020, The Authors, All Rights Reserved.
 
-#imports
-execute 'mongodb keyserver' do
-  command 'wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -'
-  action :run
+apt_update 'update_sources' do
+  action :update
 end
 
-execute 'mongodb key' do
-  command 'echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list'
-  action :run
+apt_repository 'mongodb-org' do
+  uri 'http://repo.mongodb.org/apt/ubuntu'
+  distribution 'xenial/mongodb-org/3.2'
+  components ['multiverse']
+  keyserver 'hkp://keyserver.ubuntu.com:80'
+  key 'EA312927'
+  action :add
 end
 
-include_recipe 'apt'
-apt_update
-
-execute 'mongodb' do
-  command 'sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20'
-  action :run
+package 'mongodb-org' do
+  options '--allow-unauthenticated'
+  action :install
 end
 
-execute 'restart mongodb' do
-  command 'sudo systemctl restart mongod'
-  action :run
+service 'mongod' do
+  action [:enable, :start]
 end
 
-execute 'enable mongodb' do
-  command 'sudo systemctl enable mongod'
-  action :run
+
+template '/etc/mongod.conf' do
+  source 'mongod.conf.erb'
+  notifies :restart, 'service[mongod]'
+end
+
+template '/lib/systemd/system/mongod.service' do
+  source 'mongod.service.erb'
 end

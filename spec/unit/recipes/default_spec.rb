@@ -12,27 +12,27 @@ describe 'mongodb::default' do
     # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
     platform 'ubuntu', '16.04'
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
+    it 'should update source list' do
+      expect(chef_run).to update_apt_update 'update_sources'
     end
 
-    # it 'should install apt from a recipe' do
-    #   expect(chef_run).to include_recipe 'apt'
-    # end
-    #
-    # it 'should install sc-mongodb from a recipe' do
-    #   expect(chef_run).to include_recipe 'sc-mongodb'
-    # end
+    it 'should add mongod to source list' do
+      expect(chef_run).to add_apt_repository('mongodb-org')
+    end
 
-  end
+    it 'should create mongod.conf template in /etc/mongod.conf' do
+           expect(chef_run).to create_template "/etc/mongod.conf"
+     end
 
-  #context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-  #  platform 'centos', '7'
+     it 'should create mongod.service template in /lib/systemd/system/mongod.service' do
+       expect(chef_run).to create_template "/lib/systemd/system/mongod.service"
+     end
 
-  #  it 'converges successfully' do
-  #    expect { chef_run }.to_not raise_error
-  #  end
-  #end
+     it 'converges successfully' do
+       expect { chef_run }.to_not raise_error
+     end
+
+
+
+   end
 end

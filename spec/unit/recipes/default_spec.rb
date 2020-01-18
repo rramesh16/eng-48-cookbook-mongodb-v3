@@ -21,7 +21,7 @@ describe 'mongodb::default' do
     end
 
     it 'should create mongod.conf template in /etc/mongod.conf' do
-           expect(chef_run).to create_template "/etc/mongod.conf"
+           expect(chef_run).to create_template("/etc/mongod.conf").with_variables(bind_ip:'0.0.0.0', port:27017)
      end
 
      it 'should create mongod.service template in /lib/systemd/system/mongod.service' do
